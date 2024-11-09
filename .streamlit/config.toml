@@ -1,0 +1,21 @@
+[theme]
+primaryColor = "#007ACC"
+backgroundColor = "#1E1E1E"
+secondaryBackgroundColor = "#252526"
+textColor = "#D4D4D4"
+font = "monospace"
+
+[server]
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+
+[runner]
+fastReruns = true
+
+[layout]
+wide = true
