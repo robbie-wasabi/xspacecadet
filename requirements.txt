@@ -1,0 +1,10 @@
+selenium==4.10.0
+pillow==9.5.0
+requests
+twspace_dl
+python-dotenv
+insanely-fast-whisper
+streamlit
+watchdog
+openai
+webdriver-manager

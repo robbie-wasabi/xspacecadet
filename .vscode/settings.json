@@ -1,0 +1,19 @@
+{
+    "files.exclude": {
+        "**/__pycache__": true,
+        ".pytest_cache": true,
+    },
+    "editor.formatOnSave": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+    "black-formatter.args": [
+        "--line-length",
+        "100"
+    ], // Moved line length setting outside of [python] block
+    "[yaml]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    }
+}
