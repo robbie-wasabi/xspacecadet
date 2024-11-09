@@ -1,6 +1,6 @@
 # X SpaceCadet
 
-_the only x space transcription tool that is able to identify speakers and summarize conversations_
+_the first & only x space transcription tool that is able to identify speakers and summarize conversations_
 
 Record, transcribe (with speaker identification), and chat directly with X Space transcripts.
 
