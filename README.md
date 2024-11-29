@@ -2,9 +2,11 @@
 
 _the first & only x space transcription tool that is able to identify speakers and summarize conversations_
 
-Record, transcribe (with speaker identification), and chat directly with X Space transcripts.
+https://github.com/robbie-wasabi/xspacecadet
 
 ## Features
+
+Record, transcribe (with speaker identification), and chat directly with X Space transcripts.
 
 - **Record X Spaces:** Bot joins the space and records the audio while noting the current speaker.
 - **Audio Processing:** Download and process audio using [twspace-dl](https://github.com/HoloArchivists/twspace-dl).
