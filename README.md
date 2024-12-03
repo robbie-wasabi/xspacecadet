@@ -30,7 +30,7 @@ Listening to people ramble on x spaces is often grueling but it is certain that 
 
 ### Prerequisites
 
-- **Python 3.7 or higher**
+- **Python 3.7 but not higher than Python 3.11.10:** insanely fast whisper has issues with newer versions of python.
 - **[Chrome WebDriver](https://chromedriver.chromium.org/downloads):** Required for Selenium to automate browser actions.
 - **[ffmpeg](https://ffmpeg.org/download.html):** Needed for audio conversion.
 - **X API Key:** Basic plan required for accessing X API endpoints.
@@ -49,7 +49,15 @@ Listening to people ramble on x spaces is often grueling but it is certain that 
 2. **Install Dependencies:**
 
    ```sh
-   pip install -r requirements.txt
+   # install python 3.11
+   brew install python@3.11
+
+   # create virtual environment
+   python3.11 -m venv .venv
+   source .venv/bin/activate
+
+   # install dependencies to virtual environment
+   python3.11 -m pip install -r requirements.txt
    ```
 
 3. **Set Up Environment Variables:**
@@ -88,13 +96,13 @@ XSpaceCadet can be used via a shitty command-line interface or the Streamlit web
 To record a Space:
 
 ```sh
-python main.py record <space_id> [cookie_file] [options]
+python3.11 main.py record <space_id> [cookie_file] [options]
 ```
 
 **Example:**
 
 ```sh
-python main.py record https://x.com/i/spaces/AAAAAAAAAAAAA ./cookies.txt
+python3.11 main.py record https://x.com/i/spaces/AAAAAAAAAAAAA ./cookies.txt
 ```
 
 #### Transcribing and Identifying Speakers
@@ -102,13 +110,13 @@ python main.py record https://x.com/i/spaces/AAAAAAAAAAAAA ./cookies.txt
 To transcribe the recorded audio and identify speakers:
 
 ```sh
-python main.py transcribe <space_id>
+python3.11 main.py transcribe <space_id>
 ```
 
 **Example:**
 
 ```sh
-python main.py transcribe AAAAAAAAAAAAA
+python3.11 main.py transcribe AAAAAAAAAAAAA
 ```
 
 #### Fetching Space Metadata
@@ -116,13 +124,13 @@ python main.py transcribe AAAAAAAAAAAAA
 To fetch metadata for a space:
 
 ```sh
-python main.py fetch-metadata <space_id>
+python3.11 main.py fetch-metadata <space_id>
 ```
 
 **Example:**
 
 ```sh
-python main.py fetch-metadata AAAAAAAAAAAAA
+python3.11 main.py fetch-metadata AAAAAAAAAAAAA
 ```
 
 ### Streamlit Web App
@@ -132,7 +140,7 @@ python main.py fetch-metadata AAAAAAAAAAAAA
 Start the Streamlit application:
 
 ```sh
-streamlit run app.py
+python3.11 -m streamlit run app.py
 ```
 
 #### Using the App

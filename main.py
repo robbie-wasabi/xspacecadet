@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 
 from dotenv import load_dotenv
 from utils import PATH_SPACE_DATA, PATH_TRANSCRIPT_UNIDENTIFIED, init_env, parse_space_id
@@ -16,8 +17,8 @@ from lib.bot import XSpaceBot
 from lib.xapi import XAPI
 
 
-print("cli is broken as of sep 25 2024")
-exit()
+# print("cli is broken as of sep 25 2024")
+# exit()
 
 
 def record_space(
@@ -45,9 +46,12 @@ def record_space(
             take_screenshots=take_screenshots,
             opts=parsed_opts,
         )
+        # TODO: this is a hack to keep the main thread alive while the bot is running
+        while not bot.stop_event.is_set():
+            time.sleep(1)
     except KeyboardInterrupt:
+        print("\nKeyboard interrupt received. Stopping bot...")
         bot.stop()
-        print("Bot has been stopped.")
 
 
 #  diarizate and speech-to-text the audio file
@@ -102,8 +106,11 @@ def transcribe_and_identify_speakers(space_id, hf_token):
 
 def fetch_space_metadata(space_id, x_bearer):
     xapi = XAPI(x_bearer)
-    metadata = xapi.get_space_metadata(space_id)
-    print(metadata)
+    try:
+        metadata = xapi.get_space_metadata(space_id)
+        print(metadata)
+    except Exception as e:
+        print(f"Failed to fetch space metadata: {str(e)}")
 
 
 if __name__ == "__main__":
@@ -116,7 +123,7 @@ if __name__ == "__main__":
     record_parser.add_argument("cookie_file", type=str, nargs="?", help="path to x cookie file")
     record_parser.add_argument(
         "--no-headless",
-        action="store_false",
+        action="store_true",
         dest="no_headless",
         default=False,
         help="run the bot in non-headless mode (shows selenium browser)",
@@ -127,7 +134,7 @@ if __name__ == "__main__":
     record_parser.add_argument(
         "--no-audio",
         dest="no_audio",
-        action="store_false",
+        action="store_true",
         default=False,
         help="do not fetch audio from the space (useful for debugging)",
     )
@@ -137,7 +144,7 @@ if __name__ == "__main__":
     record_parser.add_argument(
         "--no-metadata",
         dest="no_metadata",
-        action="store_false",
+        action="store_true",
         default=False,
         help="do not fetch space metadata (if you don't have X Basic API access)",
     )

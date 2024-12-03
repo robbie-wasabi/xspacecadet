@@ -253,6 +253,9 @@ def main() -> None:
         )
 
         metadata = read_space_metadata(selected_space) if selected_space else None
+        if not metadata:
+            st.error("Could not fetch metadata for this space.")
+            return
 
         if selected_space and metadata:
             st.write(f"**Title:** {metadata['title']}")
